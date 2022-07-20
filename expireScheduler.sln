@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "expireScheduler", "expireScheduler\expireScheduler.csproj", "{766EFB12-E567-4610-AE12-282A6293881D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "esSetup", "esSetup\esSetup.vdproj", "{6648AFF1-AFE7-4DC7-A216-EE7A9EB0688E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{766EFB12-E567-4610-AE12-282A6293881D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766EFB12-E567-4610-AE12-282A6293881D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766EFB12-E567-4610-AE12-282A6293881D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766EFB12-E567-4610-AE12-282A6293881D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6648AFF1-AFE7-4DC7-A216-EE7A9EB0688E}.Debug|Any CPU.ActiveCfg = Debug
+		{6648AFF1-AFE7-4DC7-A216-EE7A9EB0688E}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4FBC131-E9CD-42B6-AB4C-4CF7AF2B0C8D}
+	EndGlobalSection
+EndGlobal
