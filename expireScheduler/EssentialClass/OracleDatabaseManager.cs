@@ -21,7 +21,7 @@ namespace expireScheduler.EssentialClass
         private static string connectionString;
         public OracleDatabaseManager()
         {
-            conString = "User Id=BG;Password=bg;Data Source=172.17.4.199:9107/PRAN;pooling=false;";
+            conString = "";
         }
         public static OracleConnection OpenCon
         {
