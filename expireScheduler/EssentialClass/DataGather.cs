@@ -44,7 +44,7 @@ namespace expireScheduler.EssentialClass
                                             INNER JOIN BG_EMAIL E ON P.USER_TEXT = E.USER_TEXT
                                             WHERE BG.BREQ_OID = '" + bg + "' and P.CMNU_TEXT = '" + menu + @"'
                                             UNION ALL
-                                            SELECT E.USER_TEXT, E.USER_MAIL, 'CC' MAIL_TYPE
+                                            SELECT E.USER_TEXT, E.USER_MAIL, 'TO' MAIL_TYPE
                                               FROM BG_BREQ  BG
                                                    INNER JOIN BG_BREQ_TICK TICK ON BG.BREQ_OID = TICK.FILE_BREQ
                                                    INNER JOIN BG_EMAIL E ON TICK.CREATE_USER = E.USER_TEXT

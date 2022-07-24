@@ -144,29 +144,30 @@ namespace expireScheduler.EssentialClass
             var emailList = await Task.Run(() => dg.emailListByMenu("202", BGID));
             var toList = emailList.Where(t => t.MAIL_TYPE == "TO");
             var ccList = emailList.Where(t => t.MAIL_TYPE == "CC");
-            //if (emailList.Count < 1)
-            //{
-            //    return false;
-            //}
-            //if (toList.Count() < 1)
-            //{
-            //    foreach (var item in ccList)
-            //    {
-            //        TO.Add(item.USER_MAIL);
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (var item in toList)
-            //    {
-            //        TO.Add(item.USER_MAIL);
-            //    }
-            //    foreach (var item in ccList)
-            //    {
-            //        CC.Add(item.USER_MAIL);
-            //    }
-            //}
-            TO.Add("mis90@prangroup.com");
+            if (emailList.Count < 1)
+            {
+                return false;
+            }
+            if (toList.Count() < 1)
+            {
+                foreach (var item in ccList)
+                {
+                    TO.Add(item.USER_MAIL);
+                }
+            }
+            else
+            {
+                foreach (var item in toList)
+                {
+                    TO.Add(item.USER_MAIL);
+                }
+                foreach (var item in ccList)
+                {
+                    CC.Add(item.USER_MAIL);
+                }
+            }
+            //TO.Add("mis90@prangroup.com");
+            CC.Add("mis90@prangroup.com");
             bool IsSend = sendMail(mailSubject, mailBody, TO, CC);
             if (IsSend)
             {

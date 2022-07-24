@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace expireScheduler
     {
         MailCenter MC = new MailCenter();
         OracleDatabaseManager odm = new OracleDatabaseManager();
+        int isStop = 0;
         public frmES()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace expireScheduler
                 DataTable data = await getESDataAsync(qry);
                 if (data.Rows.Count>0) 
                 {
-                    sb.AppendFormat(DateTime.Now.ToString() + "{0}", Environment.NewLine);
+                    sb.AppendFormat(DateTime.Now.ToString() +"{0}", Environment.NewLine);
                     //tbxES.AppendText(sb.ToString());
                     foreach (DataRow row in data.Rows)
                     {
@@ -71,6 +73,8 @@ namespace expireScheduler
                         }
 
                     }
+                    var a = DateTime.Now.ToString("dddd, dd MMMM yyyy HH_mm_ss");
+                    File.WriteAllText(@"D:\New folder\" + DateTime.Now.ToString("dddd, dd MMMM yyyy HH-mm-ss") + ".txt", sb.ToString());
                 }
             }
             catch (Exception ex)
@@ -78,8 +82,13 @@ namespace expireScheduler
                 sb.AppendFormat(ex.ToString() + "{0}", Environment.NewLine);
                 //tbxES.AppendText(sb.ToString());
             }
+            
             tbxES.AppendText(sb.ToString());
-            timerES.Start();
+            if (isStop.Equals(0))
+            {
+                timerES.Start();
+                isStop = 0;
+            }
         }
 
         private async Task<DataTable> getESDataAsync(string qry)
@@ -89,10 +98,11 @@ namespace expireScheduler
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            isStop = 0;
             btnStart.Enabled = false;
             btnStop.Enabled = true;
             timerES.Start();
-            timerES.Interval = 500;
+            timerES.Interval = 3600000;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -100,11 +110,32 @@ namespace expireScheduler
             btnStop.Enabled = false;
             btnStart.Enabled = true;
             timerES.Stop();
+            isStop = 1;
         }
 
         private void frmES_Load(object sender, EventArgs e)
         {
             btnStop.Enabled = false;
+        }
+
+        private void frmES_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                trayIcon.Visible = true;
+                //trayIcon.ShowBalloonTip(500);
+                this.Hide();
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                trayIcon.Visible = false;
+            }
+        }
+
+        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }
