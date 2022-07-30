@@ -16,13 +16,13 @@ namespace expireScheduler.EssentialClass
         private bool sendMail(string mailSubject, string mailBody, List<string> toUser, List<string> ccUser)
         {
             var information = dg.getEmailCredentials("ISMS");
-            string Server_ID = information.Rows[0]["SERVER_ID"].ToString(); //"172.17.2.12";
-            int Server_Port = Convert.ToInt32(information.Rows[0]["SERVER_PORT"]); //587;
-            string senderDisplayName = information.Rows[0]["DISPLAYNAME"].ToString(); //"Bank Guarantee-Notification";
-            string senderDisplayEmail = information.Rows[0]["DISPLAYEMAIL"].ToString(); //"BankGuarantee@Prangroup.com";
-            string senderAccount = information.Rows[0]["SENDERACCOUNT"].ToString(); //"lsms@prangroup.com";
+            string Server_ID = information.Rows[0]["SERVER_ID"].ToString(); 
+            int Server_Port = Convert.ToInt32(information.Rows[0]["SERVER_PORT"]); 
+            string senderDisplayName = information.Rows[0]["DISPLAYNAME"].ToString(); 
+            string senderDisplayEmail = information.Rows[0]["DISPLAYEMAIL"].ToString();
+            string senderAccount = information.Rows[0]["SENDERACCOUNT"].ToString(); 
             //string senderCredential = "mis@W3lc0m3";
-            string senderCredential = information.Rows[0]["SENDERPASSWORD"].ToString(); //"@dm!n@#sysmail";
+            string senderCredential = information.Rows[0]["SENDERPASSWORD"].ToString(); 
             MailMessage email = new MailMessage();
             email.IsBodyHtml = true;
             email.From = new MailAddress(senderDisplayEmail, senderDisplayName);
